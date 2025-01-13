@@ -1,0 +1,12 @@
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item.active {
+  background-color: #e9ecef;
+  color: #000;
+}
+
+.nav-link.active {
+  font-weight: bold;
+}

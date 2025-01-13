@@ -1,0 +1,97 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a
+      class="navbar-brand"
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{exact: true}"
+      >NavBar</a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbar"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="navbar-nav me-auto my-2 my-lg-0">
+        <li
+          class="nav-item dropdown"
+          (mouseenter)="showDropdown = true"
+          (mouseleave)="showDropdown = false"
+        >
+          @if(isLoggedIn) {
+          <a
+            class="nav-link dropdown-toggle"
+            routerLink="/profile"
+            role="button"
+            routerLinkActive="active"
+          >
+            {{ currentUser?.user?.username || 'Profile' }}
+          </a>
+          } @else {
+          <a
+            class="nav-link dropdown-toggle"
+            routerLink="/login"
+            role="button"
+            routerLinkActive="active"
+            >Login</a
+          >
+          }
+          <ul class="dropdown-menu" [class.show]="showDropdown">
+            @if(isLoggedIn) {
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="/change-password"
+                routerLinkActive="active"
+                >Password</a
+              >
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a
+                class="dropdown-item"
+                href="#"
+                (click)="$event.preventDefault(); logout()"
+                >Logout</a
+              >
+            </li>
+            } @else {
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="/signup"
+                routerLinkActive="active"
+                >Sign up</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="/reset-password"
+                routerLinkActive="active"
+                >Forgot password</a
+              >
+            </li>
+            }
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex" role="search" (ngSubmit)="onSearch($event)">
+        <div class="input-group">
+          <input
+            class="form-control"
+            type="search"
+            placeholder="Search"
+            [(ngModel)]="searchQuery"
+            name="search"
+          />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>

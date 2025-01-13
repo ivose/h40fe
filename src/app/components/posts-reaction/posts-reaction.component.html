@@ -1,0 +1,15 @@
+<div class="d-flex align-items-center gap-2">
+  @if (reactionCategories.length) { @for (category of reactionCategories; track
+  category.id) {
+  <button
+    class="btn btn-sm"
+    [class.btn-primary]="isSelected(category.id)"
+    [class.btn-outline-primary]="!isSelected(category.id)"
+    [disabled]="!authService.currentUserValue"
+    (click)="toggleReaction(category.id)"
+    [title]="category.name"
+  >
+    {{ category.icon }} {{ getReactionCount(category.id) }}
+  </button>
+  } }
+</div>

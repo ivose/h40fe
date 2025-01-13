@@ -1,0 +1,31 @@
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li class="page-item" [class.disabled]="page === 1">
+      <a class="page-link" href="#" (click)="onPageChange($event, 1)"
+        >&laquo;</a
+      >
+    </li>
+    <li class="page-item" [class.disabled]="page === 1">
+      <a class="page-link" href="#" (click)="onPageChange($event, page - 1)"
+        >&#8249;</a
+      >
+    </li>
+    <ng-container *ngFor="let pageNum of getVisiblePages()">
+      <li class="page-item" [class.active]="pageNum === page">
+        <a class="page-link" href="#" (click)="onPageChange($event, pageNum)">
+          {{ pageNum }}
+        </a>
+      </li>
+    </ng-container>
+    <li class="page-item" [class.disabled]="page === totalPages">
+      <a class="page-link" href="#" (click)="onPageChange($event, page + 1)"
+        >&#8250;</a
+      >
+    </li>
+    <li class="page-item" [class.disabled]="page === totalPages">
+      <a class="page-link" href="#" (click)="onPageChange($event, totalPages)"
+        >&raquo;</a
+      >
+    </li>
+  </ul>
+</nav>

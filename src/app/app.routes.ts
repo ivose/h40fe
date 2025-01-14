@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { MainComponent } from './pages/main/main.component';
 import { AuthGuard } from './guards/auth.guard';
-import { PostsItemComponent } from './components/posts-item/posts-item.component';
+import { PostsItemComponent } from './components/posts/posts-item/posts-item.component';
 import { PostsComponent } from './components/posts/posts.component';
 
 export const routes: Routes = [
@@ -51,7 +51,7 @@ export const routes: Routes = [
             },
             {
                 path: 'new',
-                loadComponent: () => import('./components/posts-new/posts-new.component').then(m => m.PostsNewComponent),
+                loadComponent: () => import('./components/posts/posts-new/posts-new.component').then(m => m.PostsNewComponent),
                 canActivate: [AuthGuard]
             },
             {
@@ -61,7 +61,7 @@ export const routes: Routes = [
             },
             {
                 path: ':id/edit',
-                loadComponent: () => import('./components/posts-edit/posts-edit.component').then(m => m.PostsEditComponent),
+                loadComponent: () => import('./components/posts/posts-edit/posts-edit.component').then(m => m.PostsEditComponent),
                 canActivate: [AuthGuard]
             }
         ]

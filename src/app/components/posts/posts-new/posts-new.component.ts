@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PostService } from '../../services/post.service';
+import { PostService } from '../../../services/post.service';
 
 @Component({
   selector: 'app-posts-new',

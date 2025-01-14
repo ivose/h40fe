@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { PostService } from '../../services/post.service';
-import { AuthService } from '../../services/auth.service';
+import { PostService } from '../../../services/post.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'post-edit',

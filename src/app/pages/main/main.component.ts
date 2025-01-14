@@ -6,7 +6,7 @@ import { AuthService } from '../../services/auth.service';
 import { Post } from '../../models/post.model';
 import { PageableParams } from '../../models/pageable-params.model';
 import { PaginationComponent } from '../../components/pagination/pagination.component';
-import { PostsItemComponent } from '../../components/posts-item/posts-item.component';
+import { PostsItemComponent } from '../../components/posts/posts-item/posts-item.component';
 import { Router } from '@angular/router';
 
 @Component({

@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ReactionCategory } from '../../models/reaction-category.model';
-import { Reaction } from '../../models/reaction.model';
-import { ReactionService } from '../../services/reaction.service';
-import { AuthService } from '../../services/auth.service';
+import { ReactionCategory } from '../../../models/reaction-category.model';
+import { Reaction } from '../../../models/reaction.model';
+import { ReactionService } from '../../../services/reaction.service';
+import { AuthService } from '../../../services/auth.service';
 import { CommonModule } from '@angular/common';
-import { PostService } from '../../services/post.service';
+import { PostService } from '../../../services/post.service';
 
 @Component({
   selector: 'app-posts-reaction',

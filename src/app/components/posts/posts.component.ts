@@ -5,7 +5,7 @@ import { PostService } from '../../services/post.service';
 import { Post } from '../../models/post.model';
 import { PageableParams } from '../../models/pageable-params.model';
 import { PaginationComponent } from '../pagination/pagination.component';
-import { PostsItemComponent } from '../posts-item/posts-item.component';
+import { PostsItemComponent } from './posts-item/posts-item.component';
 import { AuthService } from '../../services/auth.service';
 
 @Component({

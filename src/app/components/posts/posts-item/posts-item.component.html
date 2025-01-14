@@ -1,3 +1,28 @@
+@if (loading) {
+  <div class="card mb-3">
+    <div class="card-body text-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+} @else if (error) {
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="alert alert-danger">
+        {{ error }}
+      </div>
+    </div>
+  </div>
+} @else if (!post && isDetailView) {
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="alert alert-danger">
+        Post not found
+      </div>
+    </div>
+  </div>
+} @else if (post) {
 <div class="card mb-3">
   <div class="card-body">
     <div class="d-flex justify-content-between align-items-center mb-2">
@@ -60,7 +85,8 @@
         </span>
       </div>
     </div>
-    } @if (error) {
+    } 
+    @if (error) {
     <div class="alert alert-danger mt-2">
       {{ error }}
     </div>
@@ -69,8 +95,10 @@
 
   <div class="card-footer bg-transparent">
     <div class="d-flex justify-content-between align-items-center">
+
       <app-posts-reaction [postId]="post.id"></app-posts-reaction>
       @if (isDetailView) {
+        
       <button class="btn btn-secondary" (click)="goBack()">
         Back to Posts
       </button>
@@ -79,9 +107,9 @@
   </div>
 
   @if (isDetailView) {
-  <div class="card-footer">
-    <h3>Comments</h3>
-    <p>Comment functionality coming soon...</p>
-  </div>
+    <div class="card-footer">
+      <app-comment-list [postId]="post.id"></app-comment-list>
+    </div>
   }
 </div>
+}

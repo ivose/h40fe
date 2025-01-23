@@ -13,11 +13,10 @@ import { ReactionCategory } from '../models/reaction-category.model';
 export class ReactionService {
   private apiUrl = `${environment.apiUrl}/reactions`;
 
+  constructor(private http: HttpClient) { }
 
-  constructor(private http: HttpClient) {}
-
-  getMyReaction(postId: number): Observable<Reaction|null> {
-    return this.http.get<Reaction|null>(`${this.apiUrl}/mine/${postId}`, { headers });
+  getMyReaction(postId: number): Observable<Reaction | null> {
+    return this.http.get<Reaction | null>(`${this.apiUrl}/mine/${postId}`, { headers });
   }
 
   getReactionCategories(): Observable<ReactionCategory[]> {
@@ -39,5 +38,4 @@ export class ReactionService {
   deletePostReaction(reactionId: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${reactionId}`, { headers });
   }
-
 }

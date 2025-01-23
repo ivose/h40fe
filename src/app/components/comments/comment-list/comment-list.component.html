@@ -1,1 +1,27 @@
-<p>comment-list works!</p>
+<div class="comments-section">
+  <h3 class="mb-4">Comments ({{ comments.length }})</h3>
+
+  <app-comment-new [postId]="postId" (commentAdded)="onCommentAdded($event)">
+  </app-comment-new>
+
+  @if (loading) {
+  <div class="text-center my-4">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  } @else if (comments.length === 0) {
+  <p class="text-muted">No comments yet. Be the first to comment!</p>
+  } @else {
+  <div class="comment-list mt-4">
+    @for (comment of comments; track comment.id) {
+    <app-comment-item
+      [comment]="comment"
+      (deleted)="onCommentDeleted($event)"
+      (updated)="onCommentUpdated($event)"
+    >
+    </app-comment-item>
+    }
+  </div>
+  }
+</div>

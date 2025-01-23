@@ -1,57 +1,41 @@
-import { headers } from './../utils/tokenHeaders';
+// src/app/services/comment-reaction.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PageableParams } from '../models/pageable-params.model';
-import { PageResponse } from '../models/page-response.model';
-import { CommentReaction } from '../models/comment-reaction.model';
 import { environment } from '../../environments/environment.generated';
+import { headers } from '../utils/tokenHeaders';
+import { ReactionCategory } from '../models/reaction-category.model';
+import { CommentReaction } from '../models/comment-reaction.model';
 
 @Injectable({
-  providedIn: 'root'  // This makes the service available throughout the app
+  providedIn: 'root'
 })
 export class CommentReactionService {
-  // Base URL for all comment reaction endpoints
   private apiUrl = `${environment.apiUrl}/commentreactions`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  // Get all reactions made by the currently logged-in user
-  // Uses pagination with PageableParams (page, size, sort)
-  getMyReactions(pageable: PageableParams): Observable<PageResponse<CommentReaction>> {
-    return this.http.get<PageResponse<CommentReaction>>(this.apiUrl, {
-      params: { ...pageable as any }
-    });//, { headers }??
+  getMyReaction(commentId: number): Observable<CommentReaction | null> {
+    return this.http.get<CommentReaction | null>(`${this.apiUrl}/mine/${commentId}`, { headers });
   }
 
-  // Add a new reaction to a comment
-  // Parameters:
-  // - commentId: The ID of the comment to react to
-  // - categoryId: The ID of the reaction category (like, love, etc.)
-  addReaction(commentId: number, categoryId: number): Observable<CommentReaction> {
-    return this.http.post<CommentReaction>(this.apiUrl, { 
-      commentId, 
-      categoryId 
-    }, { headers });
+  getReactionCategories(): Observable<ReactionCategory[]> {
+    return this.http.get<ReactionCategory[]>(`${this.apiUrl}/categories`, { headers });
   }
 
-  // Get details of a specific reaction by its ID
-  getReaction(reactionId: number): Observable<CommentReaction> {
+  readCommentReaction(reactionId: number): Observable<CommentReaction> {
     return this.http.get<CommentReaction>(`${this.apiUrl}/${reactionId}`, { headers });
   }
 
-  // Update an existing reaction to a different category
-  // Example: Change a 'like' to a 'love'
-  updateReaction(reactionId: number, categoryId: number): Observable<CommentReaction> {
-    return this.http.put<CommentReaction>(
-      `${this.apiUrl}/${reactionId}/${categoryId}`, 
-      {},
-      { headers }
-    );
+  addCommentReaction(commentId: number, categoryId: number): Observable<CommentReaction> {
+    return this.http.post<CommentReaction>(this.apiUrl, { commentId, categoryId }, { headers });
   }
 
-  // Remove a reaction from a comment
-  deleteReaction(reactionId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${reactionId}`, { headers });
+  updateCommentReaction(reactionId: number, categoryId: number): Observable<CommentReaction> {
+    return this.http.put<CommentReaction>(`${this.apiUrl}/${reactionId}/${categoryId}`, {}, { headers });
+  }
+
+  deleteCommentReaction(reactionId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${reactionId}`, { headers });
   }
 }

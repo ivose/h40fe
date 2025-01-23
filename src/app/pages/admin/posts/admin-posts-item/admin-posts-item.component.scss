@@ -1,0 +1,26 @@
+// src/app/pages/admin/posts/admin-posts-item/admin-posts-item.component.scss
+:host {
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+}
+
+.btn-group {
+  .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+  }
+}
+
+.text-muted {
+  font-size: 0.875rem;
+}
+
+td {
+  vertical-align: middle;
+}
+
+.badge {
+  font-size: 0.875rem;
+  padding: 0.35em 0.65em;
+}

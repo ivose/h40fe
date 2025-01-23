@@ -1,0 +1,48 @@
+<!-- admin-users-item.component.html -->
+<td>{{ user.username }}</td>
+<td>{{ user.email }}</td>
+<td>{{ user.fullName }}</td>
+<td>
+  <span
+    class="badge"
+    [class.bg-success]="user.active"
+    [class.bg-danger]="!user.active"
+  >
+    {{ user.active ? "Active" : "Inactive" }}
+  </span>
+</td>
+<td>
+  <span
+    class="badge"
+    [class.bg-primary]="user.admin"
+    [class.bg-secondary]="!user.admin"
+  >
+    {{ user.admin ? "Admin" : "User" }}
+  </span>
+</td>
+<td>
+  <div class="btn-group btn-group-sm">
+    <button class="btn btn-outline-primary" (click)="edit.emit(user)">
+      Edit
+    </button>
+    <button class="btn btn-outline-danger" (click)="delete.emit(user)">
+      Delete
+    </button>
+    <button
+      class="btn"
+      [class.btn-outline-danger]="user.active"
+      [class.btn-outline-success]="!user.active"
+      (click)="toggleStatus.emit(user)"
+    >
+      {{ user.active ? "Deactivate" : "Activate" }}
+    </button>
+    <button
+      class="btn"
+      [class.btn-outline-primary]="!user.admin"
+      [class.btn-outline-warning]="user.admin"
+      (click)="toggleAdmin.emit(user)"
+    >
+      {{ user.admin ? "Remove Admin" : "Make Admin" }}
+    </button>
+  </div>
+</td>

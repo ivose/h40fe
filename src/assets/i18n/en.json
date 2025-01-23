@@ -1,0 +1,29 @@
+{
+  "NAV": {
+    "HOME": "Home",
+    "USERS": "Users",
+    "PROFILE": "Profile",
+    "LOGIN": "Login",
+    "SIGNUP": "Sign up",
+    "LOGOUT": "Logout",
+    "ADMIN": "Admin",
+    "LANGUAGE": "English",
+    "PASSWORD": "Password",
+    "FORGOT_PASSWORD": "Forgot password",
+    "MANAGE_POSTS": "Manage Posts",
+    "MANAGE_COMMENTS": "Manage Comments",
+    "MANAGE_USERS": "Manage Users",
+    "MANAGE_REACTIONS": "Manage Reactions",
+    "SEARCH": "Search",
+    "SEARCH_PLACEHOLDER": "Search..."
+  },
+  "POSTS": {
+    "CREATE": "Create Post",
+    "EDIT": "Edit Post",
+    "DELETE": "Delete Post",
+    "MY_POSTS": "My Posts",
+    "MY_FEED": "My Feed",
+    "NO_POSTS": "No posts found",
+    "SEARCH": "Search posts..."
+  }
+}

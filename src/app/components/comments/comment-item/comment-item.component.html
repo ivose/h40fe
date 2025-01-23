@@ -1,1 +1,38 @@
-<p>comment-item works!</p>
+<div class="comment-item border-bottom py-3">
+  @if (!isEditing) {
+  <div class="d-flex justify-content-between align-items-start">
+    <div>
+      <div class="fw-bold">{{ comment.username }}</div>
+      <div class="text-muted small">
+        {{ comment.createdAt | date : "medium" }}
+      </div>
+    </div>
+    @if (isOwnComment) {
+    <div class="btn-group">
+      <button class="btn btn-sm btn-outline-primary" (click)="startEditing()">
+        Edit
+      </button>
+      <button class="btn btn-sm btn-outline-danger" (click)="onDelete()">
+        Delete
+      </button>
+    </div>
+    }
+  </div>
+  <div class="mt-2">
+    {{ comment.content }}
+  </div>
+  <div class="mt-2">
+    <app-comment-reaction
+      [commentId]="comment.id"
+      [reactions]="comment.reactions"
+    ></app-comment-reaction>
+  </div>
+  } @else {
+  <app-comment-edit
+    [comment]="comment"
+    (edited)="onEdited($event)"
+    (cancelled)="cancelEditing()"
+  >
+  </app-comment-edit>
+  }
+</div>

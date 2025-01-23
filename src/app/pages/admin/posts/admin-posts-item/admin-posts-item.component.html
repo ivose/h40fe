@@ -1,0 +1,41 @@
+<!-- src/app/pages/admin/posts/admin-posts-item/admin-posts-item.component.html -->
+<td>
+  <div class="d-flex flex-column">
+    <span class="fw-bold">{{ post.title }}</span>
+    <small class="text-muted">{{ truncateContent(post.content) }}</small>
+  </div>
+</td>
+<td>
+  <span>{{ post.username }}</span>
+</td>
+<td>
+  <div class="d-flex flex-column">
+    <small>Created: {{ getFormattedDate(post.createdAt) }}</small>
+    @if (post.updatedAt !== post.createdAt) {
+    <small class="text-muted"
+      >Updated: {{ getFormattedDate(post.updatedAt) }}</small
+    >
+    }
+  </div>
+</td>
+<td>
+  <span class="badge bg-info">{{ post.commentsCount }}</span>
+</td>
+<td>
+  <div class="btn-group btn-group-sm">
+    <button
+      class="btn btn-outline-primary"
+      (click)="edit.emit(post)"
+      title="Edit post"
+    >
+      Edit
+    </button>
+    <button
+      class="btn btn-outline-danger"
+      (click)="delete.emit(post)"
+      title="Delete post"
+    >
+      Delete
+    </button>
+  </div>
+</td>

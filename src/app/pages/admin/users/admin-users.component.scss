@@ -1,0 +1,29 @@
+// src/app/pages/admin/users/admin-users/admin-users.component.scss
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.table {
+  margin-bottom: 0;
+
+  th {
+    white-space: nowrap;
+  }
+}
+
+.btn-group {
+  .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+  }
+}
+
+// Force modal display when shown
+.modal.show {
+  display: block !important;
+}
+
+// Ensure table responsiveness
+.table-responsive {
+  min-height: 300px;
+}

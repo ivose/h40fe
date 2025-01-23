@@ -4,8 +4,8 @@
       class="navbar-brand"
       routerLink="/"
       routerLinkActive="active"
-      [routerLinkActiveOptions]="{exact: true}"
-      >NavBar</a
+      [routerLinkActiveOptions]="{ exact: true }"
+      >SOME</a
     >
     <button
       class="navbar-toggler"
@@ -17,6 +17,13 @@
     </button>
     <div class="collapse navbar-collapse" id="navbar">
       <ul class="navbar-nav me-auto my-2 my-lg-0">
+        @if(isLoggedIn) {
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/users" routerLinkActive="active">
+            {{ 'NAV.USERS' | translate }}
+          </a>
+        </li>
+        }
         <li
           class="nav-item dropdown"
           (mouseenter)="showDropdown = true"
@@ -29,7 +36,7 @@
             role="button"
             routerLinkActive="active"
           >
-            {{ currentUser?.user?.username || 'Profile' }}
+            {{ currentUser?.user?.username || ('NAV.PROFILE' | translate) }}
           </a>
           } @else {
           <a
@@ -37,8 +44,7 @@
             routerLink="/login"
             role="button"
             routerLinkActive="active"
-            >Login</a
-          >
+          >{{ 'NAV.LOGIN' | translate }}</a>
           }
           <ul class="dropdown-menu" [class.show]="showDropdown">
             @if(isLoggedIn) {
@@ -47,8 +53,7 @@
                 class="dropdown-item"
                 routerLink="/change-password"
                 routerLinkActive="active"
-                >Password</a
-              >
+              >{{ 'NAV.PASSWORD' | translate }}</a>
             </li>
             <li><hr class="dropdown-divider" /></li>
             <li>
@@ -56,8 +61,7 @@
                 class="dropdown-item"
                 href="#"
                 (click)="$event.preventDefault(); logout()"
-                >Logout</a
-              >
+              >{{ 'NAV.LOGOUT' | translate }}</a>
             </li>
             } @else {
             <li>
@@ -65,33 +69,102 @@
                 class="dropdown-item"
                 routerLink="/signup"
                 routerLinkActive="active"
-                >Sign up</a
-              >
+              >{{ 'NAV.SIGNUP' | translate }}</a>
             </li>
             <li>
               <a
                 class="dropdown-item"
                 routerLink="/reset-password"
                 routerLinkActive="active"
-                >Forgot password</a
-              >
+              >{{ 'NAV.FORGOT_PASSWORD' | translate }}</a>
             </li>
             }
           </ul>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
+            {{ 'NAV.LANGUAGE' | translate }}
+          </a>
+          <ul class="dropdown-menu">
+            <li *ngFor="let lang of languages">
+              <a class="dropdown-item" href="#" (click)="$event.preventDefault(); changeLanguage(lang.code)">
+                {{ lang.name }}
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        @if(isLoggedIn && isAdmin) {
+        <li
+          class="nav-item dropdown"
+          (mouseenter)="showAdminDropdown = true"
+          (mouseleave)="showAdminDropdown = false"
+        >
+          <a
+            class="nav-link dropdown-toggle"
+            routerLink="/admin"
+            role="button"
+            routerLinkActive="active"
+          >
+            {{ 'NAV.ADMIN' | translate }}
+          </a>
+          <ul class="dropdown-menu" [class.show]="showAdminDropdown">
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="/admin/posts"
+                routerLinkActive="active"
+              >
+                {{ 'NAV.MANAGE_POSTS' | translate }}
+              </a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="/admin/comments"
+                routerLinkActive="active"
+              >
+                {{ 'NAV.MANAGE_COMMENTS' | translate }}
+              </a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="/admin/users"
+                routerLinkActive="active"
+              >
+                {{ 'NAV.MANAGE_USERS' | translate }}
+              </a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="/admin/reactions"
+                routerLinkActive="active"
+              >
+                {{ 'NAV.MANAGE_REACTIONS' | translate }}
+              </a>
+            </li>
+          </ul>
+        </li>
+        }
       </ul>
+      @if(isSearchVisible) {
       <form class="d-flex" role="search" (ngSubmit)="onSearch($event)">
         <div class="input-group">
           <input
             class="form-control"
             type="search"
-            placeholder="Search"
+            [placeholder]="'NAV.SEARCH_PLACEHOLDER' | translate"
             [(ngModel)]="searchQuery"
             name="search"
           />
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <button class="btn btn-outline-success" type="submit">
+            {{ 'NAV.SEARCH' | translate }}
+          </button>
         </div>
       </form>
+      }
     </div>
   </div>
 </nav>

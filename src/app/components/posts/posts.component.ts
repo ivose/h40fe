@@ -7,11 +7,12 @@ import { PageableParams } from '../../models/pageable-params.model';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { PostsItemComponent } from './posts-item/posts-item.component';
 import { AuthService } from '../../services/auth.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-posts',
   standalone: true,
-  imports: [CommonModule, PaginationComponent, PostsItemComponent],
+  imports: [CommonModule, PaginationComponent, PostsItemComponent, TranslatePipe],
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.scss']
 })
@@ -65,7 +66,6 @@ export class PostsComponent implements OnInit {
   loadPosts() {
     this.loading = true;
     const pageParams = new PageableParams(this.currentPage - 1, this.pageSize);
-
     let request;
     switch(this.type) {
       case 'my-posts':

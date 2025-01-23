@@ -1,3 +1,5 @@
+import { ReactionStats } from "./reaction-stats.model";
+
 export class Comment {
     constructor(
         public id: number,
@@ -5,7 +7,6 @@ export class Comment {
         public username: string,
         public content: string,
         public createdAt: Date,
-        public postId: number,
-        public parentCommentId?: number
+        public reactions?: ReactionStats | null
     ) {}
 }

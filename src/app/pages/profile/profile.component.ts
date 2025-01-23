@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
     born: ''
   };
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.authService.getMe().subscribe({

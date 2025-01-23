@@ -26,7 +26,7 @@ export class PostsEditComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -38,7 +38,7 @@ export class PostsEditComponent implements OnInit {
   loadPost() {
     this.loading = true;
     this.error = '';
-    
+
     this.postService.getPostDetails(this.postId).subscribe({
       next: (post) => {
         // Verify ownership
@@ -46,7 +46,7 @@ export class PostsEditComponent implements OnInit {
           this.error = "You don't have permission to edit this post";
           return;
         }
-        
+
         this.title = post.title;
         this.content = post.content;
         this.loading = false;

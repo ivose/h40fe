@@ -1,6 +1,5 @@
-import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-pagination',
@@ -15,7 +14,7 @@ export class PaginationComponent implements OnInit, OnChanges {
   @Input() count = 0;
   @Input() delta = 3;
   totalPages = 0;
-  
+
   @Output() pageChange = new EventEmitter<number>();
 
   ngOnInit() {
@@ -36,7 +35,7 @@ export class PaginationComponent implements OnInit, OnChanges {
     const delta = 3;
     const range: number[] = [];
 
-    for(let i = this.page - this.delta; i <= this.page + this.delta; i++) {
+    for (let i = this.page - this.delta; i <= this.page + this.delta; i++) {
       if (i >= 1 && i <= this.totalPages) {
         range.push(i);
       }

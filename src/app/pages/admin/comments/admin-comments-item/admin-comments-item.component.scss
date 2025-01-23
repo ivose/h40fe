@@ -1,0 +1,23 @@
+:host {
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+}
+
+.comment-content {
+  max-width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn-group {
+  .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+  }
+}
+
+td {
+  vertical-align: middle;
+}

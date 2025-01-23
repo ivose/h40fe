@@ -1,0 +1,129 @@
+<!-- src/app/pages/admin/posts/admin-posts/admin-posts.component.html -->
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <!-- Header -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Manage Posts</h2>
+      </div>
+
+      <!-- Search and Filters -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="searchQuery"
+                (ngModelChange)="onSearch($event)"
+                placeholder="Search posts..."
+              />
+            </div>
+            <div class="col-md-3">
+              <select
+                class="form-select"
+                [(ngModel)]="sortBy"
+                (change)="onSortChange($event)"
+              >
+                <option value="">Sort By</option>
+                <option value="createdAt">Creation Date</option>
+                <option value="updatedAt">Update Date</option>
+                <option value="commentsCount">Comments Count</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Error Message -->
+      @if (error) {
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ error }}
+        <button type="button" class="btn-close" (click)="error = ''"></button>
+      </div>
+      }
+
+      <!-- Loading Spinner -->
+      @if (loading) {
+      <div class="text-center my-4">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      }
+
+      <!-- Posts Table -->
+      @if (!loading) {
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Author</th>
+                  <th>Created At</th>
+                  <th>Comments</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (post of posts; track post.id) {
+                <tr
+                  app-admin-posts-item
+                  [post]="post"
+                  (edit)="openEditModal($event)"
+                  (delete)="onDeletePost($event)"
+                ></tr>
+                } @empty {
+                <tr>
+                  <td colspan="5" class="text-center">No posts found</td>
+                </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          @if (totalElements > 0) {
+          <app-pagination
+            [count]="totalElements"
+            [page]="currentPage"
+            [size]="pageSize"
+            (pageChange)="onPageChange($event)"
+          ></app-pagination>
+          }
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+@if (showModal) {
+<div class="modal fade show d-block" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ "Create Post" }}</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        @if (error) {
+        <div class="alert alert-danger">{{ error }}</div>
+        }
+
+        <app-admin-posts-form
+          [post]="editingPost"
+          [editMode]="!!editingPost"
+          (save)="onSavePost($event)"
+          (cancel)="closeModal()"
+        ></app-admin-posts-form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade show"></div>
+}

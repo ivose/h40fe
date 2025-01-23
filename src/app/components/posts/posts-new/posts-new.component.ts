@@ -19,7 +19,7 @@ export class PostsNewComponent {
   constructor(
     private postService: PostService,
     private router: Router
-  ) {}
+  ) { }
 
   isValid(): boolean {
     return Boolean(this.title.trim()) && Boolean(this.content.trim());

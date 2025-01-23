@@ -5,9 +5,8 @@
         <div class="card-body">
           <h3>Sign Up</h3>
           @if(message) {
-            <div class="alert alert-info">{{message}}</div>
-          }
-          @if(loading) {
+          <div class="alert alert-info">{{ message }}</div>
+          } @if(loading) {
           <div class="text-center">
             <div class="spinner-border" role="status">
               <span class="visually-hidden">Loading...</span>

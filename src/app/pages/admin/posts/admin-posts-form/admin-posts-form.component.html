@@ -1,0 +1,39 @@
+<!-- src/app/pages/admin/posts/admin-posts-form/admin-posts-form.component.html -->
+<form #postForm="ngForm" (ngSubmit)="onSubmit(postForm)">
+  <div class="mb-3">
+    <label class="form-label">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="postModel.title"
+      name="title"
+      required
+      minlength="3"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Content</label>
+    <textarea
+      class="form-control"
+      rows="10"
+      [(ngModel)]="postModel.content"
+      name="content"
+      required
+      minlength="10"
+    ></textarea>
+  </div>
+
+  <div class="d-flex gap-2">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!postForm.form.valid"
+    >
+      {{ editMode ? "Update" : "Create" }}
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="onCancel()">
+      Cancel
+    </button>
+  </div>
+</form>

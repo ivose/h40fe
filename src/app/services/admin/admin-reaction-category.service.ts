@@ -5,6 +5,7 @@ import { PageableParams } from '../../models/pageable-params.model';
 import { PageResponse } from '../../models/page-response.model';
 import { ReactionCategory } from '../../models/reaction-category.model';
 import { environment } from '../../../environments/environment.generated';
+import { headers } from '../../utils/tokenHeaders';
 
 @Injectable({
   providedIn: 'root'
@@ -17,18 +18,18 @@ export class AdminReactionCategoryService {
   getAllCategories(search?: string, pageable: PageableParams = { page: 0, size: 10 }): Observable<PageResponse<ReactionCategory>> {
     let params: any = { ...pageable };
     if (search) params.search = search;
-    return this.http.get<PageResponse<ReactionCategory>>(this.apiUrl, { params });
+    return this.http.get<PageResponse<ReactionCategory>>(this.apiUrl, { params, headers });
   }
 
   createCategory(categoryData: { name: string; icon?: string }): Observable<ReactionCategory> {
-    return this.http.post<ReactionCategory>(this.apiUrl, categoryData);
+    return this.http.post<ReactionCategory>(this.apiUrl, categoryData, { headers });
   }
 
   updateCategory(categoryId: number, categoryData: { name?: string; icon?: string }): Observable<ReactionCategory> {
-    return this.http.put<ReactionCategory>(`${this.apiUrl}/${categoryId}`, categoryData);
+    return this.http.put<ReactionCategory>(`${this.apiUrl}/${categoryId}`, categoryData, { headers });
   }
 
   deleteCategory(categoryId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${categoryId}`);
+    return this.http.delete(`${this.apiUrl}/${categoryId}`, { headers });
   }
 }

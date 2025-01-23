@@ -1,0 +1,29 @@
+{
+  "NAV": {
+    "HOME": "Etusivu",
+    "USERS": "Käyttäjät",
+    "PROFILE": "Profiili",
+    "LOGIN": "Kirjaudu",
+    "SIGNUP": "Rekisteröidy",
+    "LOGOUT": "Kirjaudu ulos",
+    "ADMIN": "Ylläpito",
+    "LANGUAGE": "Suomi",
+    "PASSWORD": "Salasana",
+    "FORGOT_PASSWORD": "Unohditko salasanasi",
+    "MANAGE_POSTS": "Päivitä julkaisuja",
+    "MANAGE_COMMENTS": "Päivitä kommentteja",
+    "MANAGE_USERS": "Päivitä käyttäjiä",
+    "MANAGE_REACTIONS": "Päivitä reaktioita",
+    "SEARCH": "Haku",
+    "SEARCH_PLACEHOLDER": "Hae..."
+  },
+  "POSTS": {
+    "CREATE": "Luo julkaisu",
+    "EDIT": "Muokkaa julkaisua",
+    "DELETE": "Poista julkaisu",
+    "MY_POSTS": "Omat julkaisut",
+    "MY_FEED": "Oma syöte",
+    "NO_POSTS": "Julkaisuja ei löytynyt",
+    "SEARCH": "Hae julkaisuja..."
+  }
+}

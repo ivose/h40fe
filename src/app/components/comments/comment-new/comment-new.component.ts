@@ -9,33 +9,7 @@ import { CommentDetail } from '../../../models/comment-detail.model';
   selector: 'app-comment-new',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  template: `
-    @if (authService.currentUserValue) {
-      <form (ngSubmit)="onSubmit()" class="mb-4">
-        <div class="mb-3">
-          <textarea
-            class="form-control"
-            rows="3"
-            [(ngModel)]="content"
-            name="content"
-            placeholder="Write a comment..."
-            required
-          ></textarea>
-        </div>
-        <button 
-          type="submit" 
-          class="btn btn-primary"
-          [disabled]="!content.trim() || submitting"
-        >
-          {{ submitting ? 'Posting...' : 'Post Comment' }}
-        </button>
-      </form>
-    } @else {
-      <div class="alert alert-info">
-        Please <a routerLink="/login">login</a> to comment.
-      </div>
-    }
-  `
+  templateUrl: './comment-new.component.html',
 })
 export class CommentNewComponent {
   @Input() postId!: number;

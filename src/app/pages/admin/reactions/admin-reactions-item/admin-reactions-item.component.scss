@@ -1,0 +1,22 @@
+// src/app/pages/admin/reactions/admin-reaction-item.component.scss
+:host {
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+}
+
+.reaction-icon {
+  display: inline-block;
+  min-width: 2rem;
+}
+
+td {
+  vertical-align: middle;
+}
+
+.btn-group {
+  .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+  }
+}

@@ -3,52 +3,43 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../services/auth.service';
 import { CommentService } from '../../../services/comment.service';
 import { CommentDetail } from '../../../models/comment-detail.model';
+import { CommentEditComponent } from '../comment-edit/comment-edit.component';
+import { CommentReactionComponent } from '../comment-reaction/comment-reaction.component';
 
 @Component({
   selector: 'app-comment-item',
   standalone: true,
-  imports: [CommonModule],
-  template: `
-    <div class="comment-item border-bottom py-3">
-      <div class="d-flex justify-content-between align-items-start">
-        <div>
-          <div class="fw-bold">{{ comment.username }}</div>
-          <div class="text-muted small">
-            {{ comment.createdAt | date:'medium' }}
-          </div>
-        </div>
-        @if (isOwnComment) {
-          <div class="btn-group">
-            <button 
-              class="btn btn-sm btn-outline-primary"
-              (click)="onEdit()">
-              Edit
-            </button>
-            <button 
-              class="btn btn-sm btn-outline-danger"
-              (click)="onDelete()">
-              Delete
-            </button>
-          </div>
-        }
-      </div>
-      <div class="mt-2">
-        {{ comment.content }}
-      </div>
-    </div>
-  `
+  imports: [CommonModule, CommentEditComponent, CommentReactionComponent],
+  templateUrl: './comment-item.component.html',
 })
 export class CommentItemComponent {
   @Input() comment!: CommentDetail;
   @Output() deleted = new EventEmitter<number>();
+  @Output() updated = new EventEmitter<CommentDetail>();
+
+  isEditing = false;
 
   constructor(
     public authService: AuthService,
     private commentService: CommentService
-  ) {}
+  ) { }
 
   get isOwnComment(): boolean {
     return this.authService.currentUserValue?.user.id === this.comment.userId;
+  }
+
+  startEditing() {
+    this.isEditing = true;
+  }
+
+  cancelEditing() {
+    this.isEditing = false;
+  }
+
+  onEdited(updatedComment: CommentDetail) {
+    this.comment = updatedComment;
+    this.isEditing = false;
+    this.updated.emit(updatedComment);
   }
 
   onDelete() {
@@ -58,9 +49,5 @@ export class CommentItemComponent {
         error: (error) => console.error('Error deleting comment:', error)
       });
     }
-  }
-
-  onEdit() {
-    // TODO: Implement edit functionality
   }
 }

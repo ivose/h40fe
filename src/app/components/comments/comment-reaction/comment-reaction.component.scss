@@ -1,0 +1,7 @@
+.btn {
+  min-width: 40px;
+  transition: all 0.2s;
+}
+.btn:hover:not([disabled]) {
+  transform: scale(1.1);
+}

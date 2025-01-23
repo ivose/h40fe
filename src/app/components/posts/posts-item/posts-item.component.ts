@@ -59,7 +59,7 @@ export class PostsItemComponent implements OnInit {
   loadPost(id: number) {
     this.loading = true;
     this.error = '';
-    
+
     this.postService.getPostDetails(id).subscribe({
       next: (postDetails) => {
         this.post = {
@@ -71,7 +71,7 @@ export class PostsItemComponent implements OnInit {
           createdAt: new Date(postDetails.createdAt),
           updatedAt: new Date(postDetails.updatedAt),
           commentsCount: postDetails.commentsCount,
-          reactionsCount: postDetails.reactionsCount
+          reactions: postDetails.reactions
         };
         this.loading = false;
       },

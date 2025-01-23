@@ -1,0 +1,23 @@
+<!-- src/app/pages/admin/reactions/admin-reaction-item.component.html -->
+<td class="text-center">
+  <span class="reaction-icon fs-4">{{ category.icon }}</span>
+</td>
+<td>{{ category.name }}</td>
+<td>
+  <div class="btn-group btn-group-sm">
+    <button
+      class="btn btn-outline-primary"
+      (click)="edit.emit(category)"
+      title="Edit reaction category"
+    >
+      Edit
+    </button>
+    <button
+      class="btn btn-outline-danger"
+      (click)="delete.emit(category)"
+      title="Delete reaction category"
+    >
+      Delete
+    </button>
+  </div>
+</td>

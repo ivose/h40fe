@@ -1,0 +1,15 @@
+// src/app/pages/admin/reactions/admin-reaction-form.component.scss
+:host {
+  display: block;
+}
+
+.preview-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.form-control:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}

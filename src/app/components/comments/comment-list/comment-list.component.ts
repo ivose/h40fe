@@ -12,39 +12,10 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [
     CommonModule,
-     CommentItemComponent,
-      CommentNewComponent,
-      RouterLink
-    ],
-  template: `
-    <div class="comments-section">
-      <h3 class="mb-4">Comments ({{comments.length}})</h3>
-      
-      <app-comment-new 
-        [postId]="postId" 
-        (commentAdded)="onCommentAdded($event)">
-      </app-comment-new>
-
-      @if (loading) {
-        <div class="text-center my-4">
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-        </div>
-      } @else if (comments.length === 0) {
-        <p class="text-muted">No comments yet. Be the first to comment!</p>
-      } @else {
-        <div class="comment-list mt-4">
-          @for (comment of comments; track comment.id) {
-            <app-comment-item 
-              [comment]="comment"
-              (deleted)="onCommentDeleted($event)">
-            </app-comment-item>
-          }
-        </div>
-      }
-    </div>
-  `
+    CommentItemComponent,
+    CommentNewComponent
+  ],
+  templateUrl: './comment-list.component.html',
 })
 export class CommentListComponent implements OnInit {
   @Input() postId!: number;
@@ -52,7 +23,7 @@ export class CommentListComponent implements OnInit {
   loading = true;
   error = '';
 
-  constructor(private commentService: CommentService) {}
+  constructor(private commentService: CommentService) { }
 
   ngOnInit() {
     if (this.postId) {
@@ -61,6 +32,12 @@ export class CommentListComponent implements OnInit {
       this.error = 'No post ID provided';
       this.loading = false;
     }
+  }
+
+  onCommentUpdated(updatedComment: CommentDetail) {
+    this.comments = this.comments.map(comment =>
+      comment.id === updatedComment.id ? updatedComment : comment
+    );
   }
 
   loadComments() {

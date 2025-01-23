@@ -1,0 +1,29 @@
+{
+  "NAV": {
+    "HOME": "Avaleht",
+    "USERS": "Kasutajad",
+    "PROFILE": "Profiil",
+    "LOGIN": "Logi sisse",
+    "SIGNUP": "Registreeru",
+    "LOGOUT": "Logi välja",
+    "ADMIN": "Admin",
+    "LANGUAGE": "Eesti",
+    "PASSWORD": "Parool",
+    "FORGOT_PASSWORD": "Unustasid parooli",
+    "MANAGE_POSTS": "Halda postitusi",
+    "MANAGE_COMMENTS": "Halda kommentaare",
+    "MANAGE_USERS": "Halda kasutajaid",
+    "MANAGE_REACTIONS": "Halda reaktsioone",
+    "SEARCH": "Otsing",
+    "SEARCH_PLACEHOLDER": "Otsi..."
+  },
+  "POSTS": {
+    "CREATE": "Loo postitus",
+    "EDIT": "Muuda postitust",
+    "DELETE": "Kustuta postitus",
+    "MY_POSTS": "Minu postitused",
+    "MY_FEED": "Minu voog",
+    "NO_POSTS": "Postitusi ei leitud",
+    "SEARCH": "Otsi postitusi..."
+  }
+}

@@ -1,35 +1,37 @@
 <div class="container">
-
-    <div class="row mb-4">
-      <div class="col d-flex justify-content-between align-items-center">
-        <h2>{{pageTitle}}</h2>
-        @if (authService.currentUserValue) {
-          <button class="btn btn-primary" (click)="createPost()">Create Post</button>
-        }
-      </div>
+  <div class="row mb-4">
+    <div class="col d-flex justify-content-between align-items-center">
+      <h2>{{ pageTitle }}</h2>
+      @if (authService.currentUserValue) {
+      <button class="btn btn-primary" (click)="createPost()">
+        {{  'POSTS.CREATE' | translate }}
+      </button>
+      }
     </div>
-
-    @if (loading) {
-      <div class="text-center">
-        <div class="spinner-border" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
-      </div>
-    } @else if (posts.length === 0) {
-      <p>No posts found.</p>
-    } @else {
-      <div class="row">
-        <div class="col-md-8">
-          @for (post of posts; track post.id) {
-            <post-item [post]="post" (deleted)="loadPosts()"></post-item>
-          }
-        </div>
-      </div>
-      <app-pagination 
-        [count]="totalElements"
-        [page]="currentPage"
-        [size]="pageSize"
-        (pageChange)="onPageChange($event)">
-      </app-pagination>
-    }
   </div>
+
+  @if (loading) {
+  <div class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  } @else if (posts.length === 0) {
+  <p>No posts found.</p>
+  } @else {
+  <div class="row">
+    <div class="col-md-8">
+      @for (post of posts; track post.id) {
+      <post-item [post]="post" (deleted)="loadPosts()"></post-item>
+      }
+    </div>
+  </div>
+  <app-pagination
+    [count]="totalElements"
+    [page]="currentPage"
+    [size]="pageSize"
+    (pageChange)="onPageChange($event)"
+  >
+  </app-pagination>
+  }
+</div>

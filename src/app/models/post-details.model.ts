@@ -1,5 +1,5 @@
 import { CommentDetail } from "./comment-detail.model";
-import { ReactionSummary } from "./reaction-summary.model";
+import { ReactionStats } from "./reaction-stats.model";
 
 export class PostDetails {
     constructor(
@@ -11,8 +11,7 @@ export class PostDetails {
         public createdAt: string,
         public updatedAt: string,
         public commentsCount: number,
-        public reactionsCount: number,
-        public reactions: ReactionSummary[],
+        public reactions: ReactionStats | null,
         public recentComments: CommentDetail[]
     ) {}
 }
